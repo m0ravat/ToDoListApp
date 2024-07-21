@@ -1,0 +1,16 @@
+body{
+    padding: 20px;
+    background-color: #001f3f;
+    color: #72e78d;
+}
+header{
+    font-size: 24px;
+    text-decoration: underline;
+    text-align: center;
+}
+.projectBox{
+    width: 400px;
+    height: 600px;
+    background-color: black;
+}
+  
