@@ -15,16 +15,78 @@ header{
     column-gap: 20px;
     grid-template: max-content/max-content max-content max-content;
 }
-.projectBox{
+.projectBox {
+    margin-left: 50px;
     width: 400px;
-    height: 500px;
-    border: 2px solid rgb(63, 255, 185);
+    height: 250px;
+    border: 2px solid #3fffb9;
     background-color: black;
+    position: relative; /* Add this to contain the inner element */
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+    
+    ::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 5px grey;
+        border-radius: 10px;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+        background: rgb(255, 255, 255);
+        border-radius: 5px;
+    }
 }
-#title{
-    font-size: large;
+
+
+
+/* Adjusting direction for scrollbar positioning */
+#notes {
+    height: 156px;
+    font-size: 18px;
+    padding: 10px;
+    overflow-y: auto;
+    direction: rtl; /* Set the container to right-to-left direction */
+}
+
+#notes div {
+    direction: ltr; /* Set the content back to left-to-right direction */
+}
+
+/* Title Styles */
+#title {
+    font-size: 24px;
+    vertical-align: middle;
     width: 100%;
-    height: 70px;
+    height: 50px;
+    padding-top: 20px;
     border-bottom: 3px solid white;
 }
+
+#pen {
+    position: fixed;
+    width: 100px;
+    height: 80px;
+    border-radius: 20px;
+    bottom: 0;
+    right: 0;
+    margin: 0px 20px 20px 0px;
+    text-align: center;
+    background: none; /* Remove default button background */
+    border: none; /* Remove default button border */
+    cursor: pointer; /* Change cursor to pointer to indicate it's clickable */
+    outline: none; /* Remove outline on focus */
+}
+
+.material-symbols-outlined {
+    font-size: 50px;
+    color: #3fffb9;
+}
+
+#pen:hover {
+    background-color: rgb(0, 0, 0);
+}
+
+
+
+  
   
