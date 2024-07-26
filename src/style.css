@@ -56,7 +56,7 @@ header{
     direction: rtl; /* Set the container to right-to-left direction */
 }
 
-.notes div {
+.notes{
     direction: ltr; /* Set the content back to left-to-right direction */
 }
 
@@ -110,9 +110,7 @@ span.small{
     right: 0;
     margin-bottom: 10px;
 }
-#pen:hover {
-    background-color: rgb(0, 0, 0);
-}
+
 .tick{
     margin-right: 60px;
 }

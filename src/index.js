@@ -28,6 +28,7 @@ class ToDo {
     }
 
     static saveToLocalStorage() {
+        console.log('Saving to localStorage');
         localStorage.setItem('myToDos', JSON.stringify(myToDos.map(todo => ({
             ...todo,
             date: todo.date.toISOString() // Convert date to string for storage
@@ -39,6 +40,7 @@ class ToDo {
     }
 
     static loadFromLocalStorage() {
+        console.log('Loading from localStorage');
         const myToDosData = localStorage.getItem('myToDos');
         const doneToDosData = localStorage.getItem('doneToDos');
 
@@ -67,25 +69,25 @@ class ToDo {
 
     static printCards() {
         container1.innerHTML = ""; // Clear previous entries
-        container2.innerHTML="";
+        container2.innerHTML = "";
         // Render active to-dos
         myToDos.forEach((todo, index) => {
             const newCard = document.createElement("div");
             newCard.classList.add("projectBox");
             newCard.innerHTML = `
-                <div class="title" contenteditable="true" data-index="${index}" data-list="active">
-                    ${todo.title}
-                </div>
-                <div class="notes">
-                    <div contenteditable="true" data-index="${index}" data-list="active">${todo.desc}</div>
+                    <div class="title" contenteditable="true" data-index="${index}" data-list="active">
+                        ${todo.title}
+                    </div>
+                    <div class="notes" contenteditable="true" data-index="${index}" data-list="active">
+                        ${todo.desc}
+                    </div>
                     <button class="delete" data-index="${index}" data-list="active">
                         <span class="material-symbols-outlined small">delete</span>
                     </button>
                     <button class="tick" data-index="${index}">
                         <span class="material-symbols-outlined small">check</span>
                     </button>
-                    <div class = "date">${ToDo.formatDate(todo.date)}</div>
-                </div>
+                    <div class="date">${ToDo.formatDate(todo.date)}</div>
             `;
             container1.appendChild(newCard);
         });
@@ -106,7 +108,7 @@ class ToDo {
                     <button class="tick" data-index="${index}">
                         <span class="material-symbols-outlined small">check</span>
                     </button>
-                    <div class = "date">${ToDo.formatDate(todo.date)}</div>
+                    <div class="date">${ToDo.formatDate(todo.date)}</div>
                 </div>
             `;
             container2.appendChild(newDone);
@@ -144,10 +146,11 @@ class ToDo {
             ToDo.printCards();
         }
     }
+
     static changeDone2(index) {
         if (index >= 0 && index < doneToDos.length) {
             const todo = doneToDos[index];
-            todo.done = true;
+            todo.done = false;
             myToDos.push(todo);
             doneToDos.splice(index, 1);
             ToDo.saveToLocalStorage(); // Save to localStorage
@@ -156,15 +159,20 @@ class ToDo {
     }
 
     static updateToDoData(index, list, title, desc) {
+        console.log(`Updating ToDo: index=${index}, list=${list}, title=${title}, desc=${desc}`);
         if (list === 'active') {
             if (index >= 0 && index < myToDos.length) {
-                myToDos[index].title = title;
-                myToDos[index].desc = desc;
+                const todo = myToDos[index];
+                todo.title = title;
+                todo.desc = desc;
+                console.log(`Updated ToDo in myToDos:`, todo);
             }
         } else if (list === 'done') {
             if (index >= 0 && index < doneToDos.length) {
-                doneToDos[index].title = title;
-                doneToDos[index].desc = desc;
+                const todo = doneToDos[index];
+                todo.title = title;
+                todo.desc = desc;
+                console.log(`Updated ToDo in doneToDos:`, todo);
             }
         }
         ToDo.saveToLocalStorage(); // Save to localStorage
@@ -178,10 +186,11 @@ document.addEventListener('DOMContentLoaded', () => {
     ToDo.loadFromLocalStorage(); // Load data from localStorage
     ToDo.printCards();
 
+    // Handle clicks for delete and tick buttons
     container1.addEventListener('click', (event) => {
         const target = event.target.closest('button');
         if (target) {
-            const index = target.getAttribute('data-index');
+            const index = parseInt(target.getAttribute('data-index'), 10);
             const list = target.getAttribute('data-list');
             if (target.classList.contains('delete')) {
                 ToDo.removeCard(index, list);
@@ -191,23 +200,31 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    container1.addEventListener('blur', (event) => {
+    // Handle blur events to update the title and description
+    document.addEventListener('blur', (event) => {
         const target = event.target;
         if (target.classList.contains('title') || target.classList.contains('notes')) {
-            const index = target.getAttribute('data-index');
+            const index = parseInt(target.getAttribute('data-index'), 10);
             const list = target.getAttribute('data-list');
-            const titleElement = container2.querySelector(`.title[data-index="${index}"]`);
-            const descElement = container2.querySelector(`.notes > div[data-index="${index}"]`);
-            const title = titleElement ? titleElement.textContent : "";
-            const desc = descElement ? descElement.textContent : "";
-            ToDo.updateToDoData(index, list, title, desc);
+            const titleElement = document.querySelector(`.title[data-index="${index}"][data-list="${list}"]`);
+            const descElement = document.querySelector(`.notes[data-index="${index}"][data-list="${list}"]`);
+
+            if (titleElement && descElement) {
+                const title = titleElement.textContent.trim();
+                const desc = descElement.textContent.trim();
+                console.log(`Blur event: index=${index}, list=${list}, title=${title}, desc=${desc}`);
+                ToDo.updateToDoData(index, list, title, desc);
+            } else {
+                console.error('Could not find title or description element');
+            }
         }
     }, true);
 
+    // Handle clicks in the done container
     container2.addEventListener('click', (event) => {
         const target = event.target.closest('button');
         if (target) {
-            const index = target.getAttribute('data-index');
+            const index = parseInt(target.getAttribute('data-index'), 10);
             const list = target.getAttribute('data-list');
             if (target.classList.contains('delete')) {
                 ToDo.removeCard(index, list);
@@ -216,19 +233,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     });
-
-    container2.addEventListener('blur', (event) => {
-        const target = event.target;
-        if (target.classList.contains('title') || target.classList.contains('notes')) {
-            const index = target.getAttribute('data-index');
-            const list = target.getAttribute('data-list');
-            const titleElement = container2.querySelector(`.title[data-index="${index}"]`);
-            const descElement = container2.querySelector(`.notes > div[data-index="${index}"]`);
-            const title = titleElement ? titleElement.textContent : "";
-            const desc = descElement ? descElement.textContent : "";
-            ToDo.updateToDoData(index, list, title, desc);
-        }
-    }, true);
 
     document.getElementById("pen").addEventListener("click", ToDo.addCard);
 });
