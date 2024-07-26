@@ -1,6 +1,7 @@
 import './style.css';
 
-const container = document.getElementById("container");
+const container1 = document.getElementById("c1");
+const container2 = document.getElementById("c2");
 
 class ToDo {
     constructor(title = "Title", desc = "Details of task to be done", date = new Date(), done = false) {
@@ -65,8 +66,8 @@ class ToDo {
     }
 
     static printCards() {
-        container.innerHTML = ""; // Clear previous entries
-
+        container1.innerHTML = ""; // Clear previous entries
+        container2.innerHTML="";
         // Render active to-dos
         myToDos.forEach((todo, index) => {
             const newCard = document.createElement("div");
@@ -86,7 +87,7 @@ class ToDo {
                     <div class = "date">${ToDo.formatDate(todo.date)}</div>
                 </div>
             `;
-            container.appendChild(newCard);
+            container1.appendChild(newCard);
         });
 
         // Render done to-dos
@@ -105,7 +106,7 @@ class ToDo {
                     <div class = "date">${ToDo.formatDate(todo.date)}</div>
                 </div>
             `;
-            container.appendChild(newDone);
+            container2.appendChild(newDone);
         });
     }
 
