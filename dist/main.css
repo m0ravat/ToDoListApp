@@ -23,7 +23,7 @@ header{
     margin-left: 50px;
     width: 400px;
     height: 250px;
-    border: 2px solid #3fffb9;
+    border: 2px solid #008a57;
     background-color: rgb(255, 255, 255);
     position: relative; /* Add this to contain the inner element */
     ::-webkit-scrollbar {
@@ -90,9 +90,7 @@ header{
     cursor: pointer; /* Change cursor to pointer to indicate it's clickable */
     outline: none; /* Remove outline on focus */
 }
-button{
-    background-color: black;
-}
+
 .material-symbols-outlined {
     font-size: 10dvh;
     color: #3fffb9;
@@ -102,9 +100,9 @@ span.small{
     font-size: 30px;
 }
 .delete:hover, .tick:hover{
-    background-color: white;
+    cursor: pointer;
 }
-.delete{
+.delete, .tick{
     background-color: black;
     border: 2px solid white;
     position: absolute;
@@ -116,12 +114,6 @@ span.small{
     background-color: rgb(0, 0, 0);
 }
 .tick{
-    background-color: transparent;
-    border: 2px solid white;
-    position: absolute;
-    bottom: 0;
-    margin-bottom: 10px;
-    right: 0;
     margin-right: 60px;
 }
 .date{
