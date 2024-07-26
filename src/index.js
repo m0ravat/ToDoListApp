@@ -165,7 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ToDo.loadFromLocalStorage(); // Load data from localStorage
     ToDo.printCards();
 
-    container.addEventListener('click', (event) => {
+    container1.addEventListener('click', (event) => {
         const target = event.target.closest('button');
         if (target) {
             const index = target.getAttribute('data-index');
@@ -178,7 +178,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    container.addEventListener('blur', (event) => {
+    container2.addEventListener('blur', (event) => {
         const target = event.target;
         if (target.classList.contains('title') || target.classList.contains('notes')) {
             const index = target.getAttribute('data-index');
