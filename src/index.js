@@ -103,6 +103,9 @@ class ToDo {
                     <button class="delete" data-index="${index}" data-list="done">
                         <span class="material-symbols-outlined small">delete</span>
                     </button>
+                    <button class="tick" data-index="${index}">
+                        <span class="material-symbols-outlined small">check</span>
+                    </button>
                     <div class = "date">${ToDo.formatDate(todo.date)}</div>
                 </div>
             `;
@@ -137,6 +140,16 @@ class ToDo {
             todo.done = true;
             doneToDos.push(todo);
             myToDos.splice(index, 1);
+            ToDo.saveToLocalStorage(); // Save to localStorage
+            ToDo.printCards();
+        }
+    }
+    static changeDone2(index) {
+        if (index >= 0 && index < doneToDos.length) {
+            const todo = doneToDos[index];
+            todo.done = true;
+            myToDos.push(todo);
+            doneToDos.splice(index, 1);
             ToDo.saveToLocalStorage(); // Save to localStorage
             ToDo.printCards();
         }
@@ -178,13 +191,39 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    container1.addEventListener('blur', (event) => {
+        const target = event.target;
+        if (target.classList.contains('title') || target.classList.contains('notes')) {
+            const index = target.getAttribute('data-index');
+            const list = target.getAttribute('data-list');
+            const titleElement = container2.querySelector(`.title[data-index="${index}"]`);
+            const descElement = container2.querySelector(`.notes > div[data-index="${index}"]`);
+            const title = titleElement ? titleElement.textContent : "";
+            const desc = descElement ? descElement.textContent : "";
+            ToDo.updateToDoData(index, list, title, desc);
+        }
+    }, true);
+
+    container2.addEventListener('click', (event) => {
+        const target = event.target.closest('button');
+        if (target) {
+            const index = target.getAttribute('data-index');
+            const list = target.getAttribute('data-list');
+            if (target.classList.contains('delete')) {
+                ToDo.removeCard(index, list);
+            } else if (target.classList.contains('tick')) {
+                ToDo.changeDone2(index);
+            }
+        }
+    });
+
     container2.addEventListener('blur', (event) => {
         const target = event.target;
         if (target.classList.contains('title') || target.classList.contains('notes')) {
             const index = target.getAttribute('data-index');
             const list = target.getAttribute('data-list');
-            const titleElement = container.querySelector(`.title[data-index="${index}"]`);
-            const descElement = container.querySelector(`.notes > div[data-index="${index}"]`);
+            const titleElement = container2.querySelector(`.title[data-index="${index}"]`);
+            const descElement = container2.querySelector(`.notes > div[data-index="${index}"]`);
             const title = titleElement ? titleElement.textContent : "";
             const desc = descElement ? descElement.textContent : "";
             ToDo.updateToDoData(index, list, title, desc);
