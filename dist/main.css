@@ -1,5 +1,5 @@
 body{
-    padding: 20px;
+    padding: 20px 100px 20px 70px;
     background-color: #e1dada;
     color: #080728;
 }
@@ -26,11 +26,11 @@ header{
     border: 2px solid #008a57;
     background-color: rgb(255, 255, 255);
     position: relative; /* Add this to contain the inner element */
+    
     ::-webkit-scrollbar {
         width: 5px;
         height: 5px;
     }
-    
     ::-webkit-scrollbar-track {
         box-shadow: inset 0 0 5px grey;
         border-radius: 10px;
@@ -109,12 +109,13 @@ span.small{
     bottom: 0;
     right: 0;
     margin-bottom: 10px;
+    margin-right: 5px;
 }
 
 .tick{
     margin-right: 60px;
 }
-.date{
+.due-date{
     bottom: 0;
     left: 0;
     position: absolute;
