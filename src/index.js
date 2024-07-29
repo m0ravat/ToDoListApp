@@ -110,3 +110,5 @@ document.addEventListener('DOMContentLoaded', () => {
         project.addNewCard();
     });
 });
+import { createProject } from './navbar.js';
+document.getElementById("create").addEventListener('click',createProject);
