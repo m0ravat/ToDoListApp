@@ -153,7 +153,7 @@ span.small{
     flex-direction: column;
     justify-content: space-between;
 }
-.wrapper .sidebar ul {
+.wrapper .sidebar ul#list {
     flex-grow: 1;
     overflow-y: auto;
     max-height: calc(100vh - 200px);
@@ -268,6 +268,20 @@ h2{
 #create:hover{
     background-color: #594f8d;
 }
-ul{
+ul#list{
     overflow-y: scroll;
+}
+#delete{
+    position: fixed;
+    width: 20dvh;
+    height: 15dvh;
+    border-radius: 20px;
+    bottom: 0;
+    right: 0;
+    margin: 0px 8% 2% 0px;
+    text-align: center;
+    background: none; /* Remove default button background */
+    border: none; /* Remove default button border */
+    cursor: pointer; /* Change cursor to pointer to indicate it's clickable */
+    outline: none; /* Remove outline on focus */
 }

@@ -1,6 +1,3 @@
-// Card.js
-const container1 = document.getElementById("c1");
-const container2 = document.getElementById("c2");
 export class Card {
     constructor(title = 'Untitled', desc = '', date = new Date(), done = false) {
         this.title = title;
@@ -62,11 +59,9 @@ export class Card {
 
     static determineBackgroundColor(dueDate) {
         const today = new Date();
-        // Remove time information from today's date for accurate day comparison
         today.setHours(0, 0, 0, 0);
         const timeDiff = dueDate.getTime() - today.getTime();
-        const daysDiff = Math.floor(timeDiff / (1000 * 3600 * 24)); // Convert time difference to days
-        console.log(daysDiff);
+        const daysDiff = Math.floor(timeDiff / (1000 * 3600 * 24));
         if (daysDiff < -8) {
             return 'lime';
         } else if (daysDiff <= -3 && daysDiff >= -7) {
@@ -80,6 +75,11 @@ export class Card {
 
     // Method to print all cards to the containers
     static printCards(cardsArray, doneCardsArray, container1, container2) {
+        if (!container1 || !container2) {
+            console.error("One or both containers are missing.");
+            return;
+        }
+
         container1.innerHTML = ""; // Clear previous entries
         container2.innerHTML = "";
 
@@ -131,6 +131,8 @@ export class Card {
         });
     }
 }
+
+
 
 
 
