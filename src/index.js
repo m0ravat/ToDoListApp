@@ -1,56 +1,10 @@
 import './style.css';
 import { Card } from './card.js'; // Import the Card class
+import { ToDo } from './todo.js';
 
 const container1 = document.getElementById("c1");
 const container2 = document.getElementById("c2");
-
-class Project {
-    constructor() {
-        this.myToDos = [];
-        this.doneToDos = [];
-        this.loadFromLocalStorage();
-    }
-
-    // Load cards from localStorage
-    loadFromLocalStorage() {
-        const myToDosData = localStorage.getItem('myToDos');
-        const doneToDosData = localStorage.getItem('doneToDos');
-
-        if (myToDosData) {
-            const myToDosArray = JSON.parse(myToDosData);
-            this.myToDos = myToDosArray.map(todo => new Card(
-                todo.title,
-                todo.desc.replace(/\\n/g, '\n'), // Replace special sequence with line breaks
-                new Date(todo.date),
-                todo.done
-            ));
-        }
-
-        if (doneToDosData) {
-            const doneToDosArray = JSON.parse(doneToDosData);
-            this.doneToDos = doneToDosArray.map(todo => new Card(
-                todo.title,
-                todo.desc.replace(/\\n/g, '\n'), // Replace special sequence with line breaks
-                new Date(todo.date),
-                todo.done
-            ));
-        }
-    }
-
-    // Add new card button functionality
-    addNewCard() {
-        Card.addCard(this.myToDos); // Add a new card to myToDos
-        this.updateAndRender();
-    }
-
-    // Method to update local storage and render cards
-    updateAndRender() {
-        Card.saveToLocalStorage(this.myToDos, this.doneToDos);
-        Card.printCards(this.myToDos, this.doneToDos, container1, container2);
-    }
-}
-
-const project = new Project(); // Create a new project instance
+const project = new ToDo();
 
 document.addEventListener('DOMContentLoaded', () => {
     project.updateAndRender();
@@ -109,6 +63,10 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('pen').addEventListener('click', () => {
         project.addNewCard();
     });
+
+    // Add new project functionality
+    document.getElementById("create").addEventListener('click', function () {
+        const NewToDo = new ToDo();
+        NewToDo.CreateToDo(); // Corrected method call
+    });
 });
-import { createProject } from './navbar.js';
-document.getElementById("create").addEventListener('click',createProject);

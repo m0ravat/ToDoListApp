@@ -1,4 +1,6 @@
 // Card.js
+const container1 = document.getElementById("c1");
+const container2 = document.getElementById("c2");
 export class Card {
     constructor(title = 'Untitled', desc = '', date = new Date(), done = false) {
         this.title = title;
@@ -129,6 +131,9 @@ export class Card {
         });
     }
 }
+
+
+
 
 
 
