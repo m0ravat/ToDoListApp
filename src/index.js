@@ -65,17 +65,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById("home").addEventListener('click', loadHomePage);
 
     document.getElementById('content').addEventListener('click', (event) => {
-        const target = event.target.closest('#delete');
-        if (target) {
-            if (currentProjectIndex !== null && projectsArray[currentProjectIndex]) {
-                projectsArray[currentProjectIndex].DeleteProject();
-                updateProjectDisplay();
-                saveProjectsToLocalStorage();
-            }
-        }
-    });
-
-    document.getElementById('content').addEventListener('click', (event) => {
         const target = event.target.closest('button');
         if (target) {
             const index = parseInt(target.getAttribute('data-index'), 10);
@@ -97,6 +86,28 @@ document.addEventListener('DOMContentLoaded', () => {
                 projectsArray[currentProjectIndex].updateAndRender();
             }
             saveProjectsToLocalStorage();
+        }
+    });
+
+    document.getElementById('content').addEventListener('click', (event) => {
+        const target = event.target.closest('#delete');
+        if (target) {
+            if (currentProjectIndex !== null && projectsArray[currentProjectIndex]) {
+                projectsArray[currentProjectIndex].DeleteProject();
+                updateProjectDisplay();
+                saveProjectsToLocalStorage();
+            }
+        }
+    });
+
+    document.getElementById('content').addEventListener('click', (event) => {
+        const target = event.target.closest('#pen');
+        if (target) {
+            if (currentProjectIndex !== null && projectsArray[currentProjectIndex]) {
+                projectsArray[currentProjectIndex].addNewCard();
+                updateProjectDisplay();
+                saveProjectsToLocalStorage();
+            }
         }
     });
 });
@@ -134,5 +145,6 @@ function loadHomePage() {
         </div>
     `;
 }
+
 
 

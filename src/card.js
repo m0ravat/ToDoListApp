@@ -1,3 +1,5 @@
+import { saveProjectsToLocalStorage } from './index.js';
+
 export class Card {
     constructor(title = 'Untitled', desc = '', date = new Date(), done = false) {
         this.title = title;
@@ -13,13 +15,13 @@ export class Card {
     static addCard(cardsArray, title = 'Untitled', desc = '', date = new Date()) {
         const newCard = new Card(title, desc, date);
         cardsArray.push(newCard);
-        Card.saveToLocalStorage(cardsArray); // Save changes immediately
+        saveProjectsToLocalStorage(); // Save changes immediately
     }
 
     static removeCard(cardsArray, index) {
         if (index >= 0 && index < cardsArray.length) {
             cardsArray.splice(index, 1);
-            Card.saveToLocalStorage(cardsArray); // Save changes immediately
+            saveProjectsToLocalStorage(); // Save changes immediately
         }
     }
 
@@ -28,7 +30,7 @@ export class Card {
             const [card] = sourceArray.splice(index, 1); // Remove the card from its current list
             card.done = !card.done; // Toggle the done status
             targetArray.push(card); // Add the card to the target list
-            Card.saveToLocalStorage(sourceArray, targetArray); // Save changes immediately
+            saveProjectsToLocalStorage(); // Save changes immediately
         }
     }
 
@@ -38,35 +40,17 @@ export class Card {
             card.title = title;
             card.desc = desc;
             card.date = new Date(date); // Update the date
-            Card.saveToLocalStorage(cardsArray); // Save changes immediately
+            saveProjectsToLocalStorage(); // Save changes immediately
         }
     }
 
-    static saveToLocalStorage(cardsArray, doneCardsArray = []) {
-        localStorage.setItem('myToDos', JSON.stringify(cardsArray.map(card => ({
-            ...card,
-            desc: card.desc.replace(/\n/g, '\\n'),
-            date: card.date.toISOString()
-        }))));
-        localStorage.setItem('doneToDos', JSON.stringify(doneCardsArray.map(card => ({
-            ...card,
-            desc: card.desc.replace(/\n/g, '\\n'),
-            date: card.date.toISOString()
-        }))));
+    static saveToLocalStorage(cardsArray = [], doneCardsArray = []) {
+        // Adjusted to save cards as part of projects
+        // Local storage saving is handled by `saveProjectsToLocalStorage` in `index.js`
     }
 
     static loadFromLocalStorage() {
-        const myToDos = JSON.parse(localStorage.getItem('myToDos') || '[]').map(card => ({
-            ...card,
-            desc: card.desc.replace(/\\n/g, '\n'),
-            date: new Date(card.date)
-        }));
-        const doneToDos = JSON.parse(localStorage.getItem('doneToDos') || '[]').map(card => ({
-            ...card,
-            desc: card.desc.replace(/\\n/g, '\n'),
-            date: new Date(card.date)
-        }));
-        return { myToDos, doneToDos };
+        // Loading of cards is handled by `loadProjectsFromLocalStorage` in `index.js`
     }
 
     static determineBackgroundColor(dueDate) {
@@ -123,13 +107,13 @@ export class Card {
             // Update title on blur
             titleDiv.addEventListener('blur', (event) => {
                 cardsArray[index].title = event.target.textContent.trim();
-                Card.saveToLocalStorage(cardsArray, doneCardsArray);
+                saveProjectsToLocalStorage();
             });
 
             // Update description on blur
             notesDiv.addEventListener('blur', (event) => {
                 cardsArray[index].desc = event.target.innerHTML.replace(/<br>/g, '\n').trim();
-                Card.saveToLocalStorage(cardsArray, doneCardsArray);
+                saveProjectsToLocalStorage();
             });
 
             // Update due date
@@ -138,7 +122,7 @@ export class Card {
                 cardsArray[index].date = newDate;
                 const newColor = Card.determineBackgroundColor(newDate);
                 newCard.style.backgroundColor = newColor;
-                Card.saveToLocalStorage(cardsArray, doneCardsArray);
+                saveProjectsToLocalStorage();
             });
         });
 
@@ -170,16 +154,17 @@ export class Card {
 
             titleDiv.addEventListener('blur', (event) => {
                 doneCardsArray[index].title = event.target.textContent.trim();
-                Card.saveToLocalStorage(cardsArray, doneCardsArray);
+                saveProjectsToLocalStorage();
             });
 
             notesDiv.addEventListener('blur', (event) => {
                 doneCardsArray[index].desc = event.target.innerHTML.replace(/<br>/g, '\n').trim();
-                Card.saveToLocalStorage(cardsArray, doneCardsArray);
+                saveProjectsToLocalStorage();
             });
         });
     }
 }
+
 
 
 
