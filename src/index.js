@@ -105,7 +105,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (target) {
             if (currentProjectIndex !== null && projectsArray[currentProjectIndex]) {
                 projectsArray[currentProjectIndex].addNewCard();
-                updateProjectDisplay();
                 saveProjectsToLocalStorage();
             }
         }

@@ -41,16 +41,7 @@ export class ToDo {
 
         this.updateAndRender(); // Ensure cards are printed after content is set
 
-        document.getElementById('pen').addEventListener('click', () => {
-            this.addNewCard();
-        });
 
-        document.getElementById('delete').addEventListener('click', () => {
-            this.DeleteProject();
-            updateProjectDisplay();
-        });
-
-        this.addCardEventListeners();
         this.addEditEventListeners();
     }
 
@@ -86,42 +77,7 @@ export class ToDo {
         }
     }
 
-    addCardEventListeners() {
-        const c1 = document.getElementById('c1');
-        const c2 = document.getElementById('c2');
 
-        if (c1) {
-            c1.addEventListener('click', (event) => {
-                const target = event.target.closest('button');
-                if (target) {
-                    const index = parseInt(target.getAttribute('data-index'), 10);
-                    const list = target.getAttribute('data-list');
-                    if (target.classList.contains('delete')) {
-                        Card.removeCard(this.myToDos, index);
-                    } else if (target.classList.contains('tick')) {
-                        Card.changeDone(this.myToDos, index, this.doneToDos);
-                    }
-                    this.updateAndRender();
-                }
-            });
-        }
-
-        if (c2) {
-            c2.addEventListener('click', (event) => {
-                const target = event.target.closest('button');
-                if (target) {
-                    const index = parseInt(target.getAttribute('data-index'), 10);
-                    const list = target.getAttribute('data-list');
-                    if (target.classList.contains('delete')) {
-                        Card.removeCard(this.doneToDos, index);
-                    } else if (target.classList.contains('tick')) {
-                        Card.changeDone(this.doneToDos, index, this.myToDos);
-                    }
-                    this.updateAndRender();
-                }
-            });
-        }
-    }
 
     DeleteProject() {
         if (this.index >= 0 && this.index < this.projectsArray.length) {
