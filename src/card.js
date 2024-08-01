@@ -56,15 +56,16 @@ export class Card {
     static determineBackgroundColor(dueDate) {
         const today = new Date();
         today.setHours(0, 0, 0, 0);
-        const timeDiff = dueDate.getTime() - today.getTime();
+        const timeDiff = today.getTime() - dueDate.getTime();
         const daysDiff = Math.floor(timeDiff / (1000 * 3600 * 24));
-        if (daysDiff < -8) {
+        console.log(daysDiff);
+        if (daysDiff <= -8) {
             return 'lime';
-        } else if (daysDiff <= -3 && daysDiff >= -7) {
+        } else if (daysDiff <= -4 && daysDiff >= -7) {
             return 'yellow';
-        } else if (daysDiff <= 0 && daysDiff >= -2) {
+        } else if (daysDiff < 0 && daysDiff >= -3) {
             return 'orange';
-        } else if (daysDiff > 0) {
+        } else if (daysDiff >= 0) {
             return '#FF4545';
         }
     }

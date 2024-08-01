@@ -133,14 +133,53 @@ function loadProjectsFromLocalStorage() {
 function loadHomePage() {
     document.getElementById("content").innerHTML = `
         <header>
-            To Do List App
+            Welcome to MyNotesToDo!
         </header>
-        <div id="para">
-            Hi, this is my to do list app, made using HTML, CSS, JS on VS Code and webpack. It is designed for you to set activities, or
-            even make notes. You can press the pen icon to create a new card, delete an existing one using the trash can icon, or press
-            the tick to indicate when an activity is finished. Once a task is finished it goes to the finished section and it can be edited
-            in case. Note: The title is designed to be on one line only so if you start a new 
-            line, refresh the page so it functions normally. 
+        <div class="para">
+        Hi, this is my multi functional and easy to use notes/to do app. It can be used to keep track of tasks you need to do, but 
+        its functionality means you can also use it for notes! Do you have multiple projects with tasks or need to split up your notes?
+        Don't worry because we have allowed you to make multiple cards and projects, all stored on your local device storage.
+        </div>
+        <header> How This Works </header>
+        <div class = "para">
+        So how does the app work? Well to create a new project refer to the vertical navbar on the left and press the create a new project
+        button, which generates a new project environment for you. You can insert a title or description for the project in case you come back
+        to it later on and forget what it was for. To get started you can generate new card using the pen button at the bottom right of the project screen. 
+        The cards have their own respective titles and descriptions which can be altered at any stage, 
+        and the tick button changes it from an active task to finished and vice versa, but fret not because you can edit the contents of a finished card
+        to make any last minute changes. To delete a card press the bin button on the card, and the bin button next to the pen will delete the project, so please be careful. 
+        </div>
+        <header> What are the colours on the cards for? </header>
+        <div class = "para"> 
+        Well that is a good question, since this was originally a simple to do list program the date at the bottom of each card is designed 
+        as a due date, but for notes can be changed for colour scheming if you wish. It works as follows: <br> <br>
+        Green - You still have plenty of time to do your task (8+ days left to get it done) <br>
+        Yellow - The task is apporaching but you still have time (7 days) <br>
+        Orange - The tasks due date is almost there (You have 2 days from today) <br>
+        Red - The task should've been done (The date was set before today) <br>
+        Blue - This means the task has been put in the finished section, indicating the task has been completed. 
+        </div>
+        <header> What to do if you encounter a bug </header> 
+        <div class="para">
+        Since I am the sole creator of this website there may be problems in functionality, <br> whether its specific to a browser or otherwise, feel free to get in touch with the form below:
+        <div id="form">
+            <form action="mailto:moravat763@gmail.com" method="post" enctype="text/plain" id="ff">
+                <fieldset class="form one">
+                    <legend>Positive Feedback</legend>
+                    <label for="name1">Name: </label>
+                    <input type="text" id="name1" placeholder="Your name" required minlength="3"> <br> <br>
+
+                    <label for="email1">Email address: </label>
+                    <input type="email" id="email1" name="email" placeholder="youremail@email.com"><br> <br                    
+                    
+                    <label for="extraP1">Comments:</label>
+                    <textarea name="extraP" id="extraP1" cols="100" rows="7"></textarea> <br>
+                    <input type="submit" value="Submit" class="buttons">
+                    <input type="reset" value="Reset" class="buttons">
+                </fieldset>
+            
+            </form>
+        </div>
         </div>
     `;
 }

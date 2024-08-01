@@ -2,17 +2,42 @@ body{
     background-color: #e1dada;
     color: #080728;
     margin: 0;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     overflow-x: hidden;
 }
-
+div#form{
+    display: block;
+    text-align: center;
+}
+form{
+    margin: 20px auto 20px auto;
+    display: inline-block;
+    text-align: left;
+    font-size: calc(18px + 0.390625vw);
+}
+label, input, textarea{
+    font-size: calc(18px + 0.390625vw);
+}
+textarea{
+    padding: 10px;
+}
+fieldset{
+    background-color: white;
+    width: 700px;
+    padding: 20px;
+}
+legend{
+    background-color: black;
+    color: white;
+    padding: 5px;
+}
 header{
     font-size: 24px;
     text-decoration: underline;
     text-align: center;
+    margin: 20px 0 5px 0;
 }
-#para{
-    margin-top: 20px;
+.para{
     font-size: calc(15px + 0.390625vw);
 }
 .container{
