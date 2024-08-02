@@ -12,6 +12,7 @@ form{
     margin: 20px auto 20px auto;
     display: inline-block;
     text-align: left;
+    width: 99%;
     font-size: calc(18px + 0.390625vw);
 }
 
