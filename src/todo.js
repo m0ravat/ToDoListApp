@@ -27,16 +27,16 @@ export class ToDo {
         content.innerHTML = `
             <header contenteditable="true" data-index="${this.index}">${this.title}</header>
             <div id="para" contenteditable="true">${this.desc}</div>
-            <h1> > Active To Dos </h1>
-            <div class="container" id="c1"></div>
-            <h1> > Finished To Dos </h1>
-            <div class="container" id="c2"></div>
             <button id="pen">
                 <span class="material-symbols-outlined">stylus</span>
             </button>
             <button id="delete">
                 <span class="material-symbols-outlined">delete</span>
             </button>
+            <h1> > Active To Dos </h1>
+            <div class="container" id="c1"></div>
+            <h1> > Finished To Dos </h1>
+            <div class="container" id="c2"></div>
         `;
 
         this.updateAndRender(); // Ensure cards are printed after content is set

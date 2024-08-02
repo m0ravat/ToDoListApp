@@ -4,7 +4,6 @@ body{
     color: #080728;
     margin: 0;
     margin-bottom: 10px;
-    overflow-x: hidden;
 }
 div#form{
     display: block;
@@ -16,6 +15,7 @@ form{
     text-align: left;
     font-size: calc(18px + 0.390625vw);
 }
+
 label, input, textarea{
     font-size: calc(18px + 0.390625vw);
 }
@@ -40,12 +40,23 @@ header{
 }
 .para{
     font-size: calc(15px + 0.390625vw);
+    width: 99%;
 }
 .container{
     display: grid;
     margin-top: 20px;
     row-gap: 15px;
     grid-template: max-content/max-content max-content max-content;
+}
+@media screen and (max-width:1400px){
+    .container{
+        grid-template-columns: max-content max-content;
+    }
+}
+@media screen and (max-width:900px){
+    .container{
+        grid-template-columns: max-content;
+    }
 }
 h1{
     margin-top: 15px;
@@ -107,14 +118,13 @@ h1{
 
 
 
-#pen {
-    position: fixed;
-    width: 20dvh;
-    height: 15dvh;
+#pen, #delete{
+    width: 10dvh;
+    height: 5dvh;
     border-radius: 20px;
     bottom: 0;
     right: 0;
-    margin: 0px 2% 2% 0px;
+    margin: 5px 2% 2% 0px;
     text-align: center;
     background: none; /* Remove default button background */
     border: none; /* Remove default button border */
@@ -142,7 +152,9 @@ span.small{
     margin-bottom: 10px;
     margin-right: 5px;
 }
-
+li button{
+    text-align: left;
+}
 .tick{
     margin-right: 60px;
 }
@@ -169,8 +181,8 @@ span.small{
 }
 
 .wrapper .sidebar{
-    width: 13%;
-    height: 100vh; /* Full viewport height */
+    width: 10%;
+    height: 100%; /* Full viewport height */
     background: #4b4276;
     padding: 30px 0;
     position: fixed;
@@ -181,7 +193,7 @@ span.small{
 .wrapper .sidebar ul#list {
     flex-grow: 1;
     overflow-y: auto;
-    max-height: calc(100vh - 200px);
+    max-height: 90%;
     padding-bottom: 0px;
 }
 .wrapper .sidebar h2{
@@ -227,9 +239,9 @@ button{
 }
 
   
-.wrapper .sidebar .social_media button{
+.wrapper .sidebar .social_media a{
     display: block;
-    width: 40px;
+    width: 5dvh;
     background: #594f8d;
     height: 40px;
     line-height: 45px;
@@ -242,7 +254,7 @@ button{
   
 .wrapper #content{
     width: 100%;
-    margin-left: 210px;
+    margin-left: 25dvh;
     margin-top: 20px;
     margin-right: 10px;
 }
@@ -264,7 +276,7 @@ button{
     margin-bottom: 20px;
 }
 h2{
-    font-size: 26px;
+    font-size: calc(16px + 0.390625vw);
 }
 .wrapper .sidebar .social_media a{
     display: block;
@@ -296,17 +308,4 @@ h2{
 ul#list{
     overflow-y: scroll;
 }
-#delete{
-    position: fixed;
-    width: 20dvh;
-    height: 15dvh;
-    border-radius: 20px;
-    bottom: 0;
-    right: 0;
-    margin: 0px 8% 2% 0px;
-    text-align: center;
-    background: none; /* Remove default button background */
-    border: none; /* Remove default button border */
-    cursor: pointer; /* Change cursor to pointer to indicate it's clickable */
-    outline: none; /* Remove outline on focus */
-}
+
