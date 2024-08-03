@@ -173,7 +173,7 @@ function loadHomePage() {
                     <input type="email" id="email1" name="email" placeholder="youremail@email.com"><br> <br                    
                     
                     <label for="extraP1">Comments:</label>
-                    <textarea name="extraP" id="extraP1" cols="100" rows="7"></textarea> <br>
+                    <textarea name="extraP" id="extraP1" rows="7"></textarea> <br>
                     <input type="submit" value="Submit" class="buttons">
                     <input type="reset" value="Reset" class="buttons">
                 </fieldset>
@@ -183,6 +183,15 @@ function loadHomePage() {
         </div>
     `;
 }
-
+let count = 0;
+document.getElementById("extend").addEventListener('click',function(){
+    if (count%2==0){
+        document.getElementById("sode").style.width="100%";
+    }
+    else{
+        document.getElementById("sode").style.width="10%";
+    }
+    count++;
+});
 
 

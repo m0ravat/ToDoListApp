@@ -17,7 +17,7 @@ export class ToDo {
         newProject.classList.add("projects");
         newProject.setAttribute("data-index", this.index);
         newProject.innerHTML = `
-            <button><i class="fas fa-home"></i>${this.title}</button>
+            <button>${this.title}</button>
         `;
         list.appendChild(newProject);
     }

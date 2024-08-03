@@ -3,6 +3,7 @@ body{
     color: #080728;
     margin: 0;
     margin-bottom: 10px;
+    overflow-x: hidden;
 }
 div#form{
     display: block;
@@ -12,19 +13,20 @@ form{
     margin: 20px auto 20px auto;
     display: inline-block;
     text-align: left;
-    width: 99%;
-    font-size: calc(18px + 0.390625vw);
+    width: fit-content;
+    max-width: 99%;
+    font-size: calc(15px + 0.390625vw);
 }
 
 label, input, textarea{
-    font-size: calc(18px + 0.390625vw);
+    font-size: calc(15px + 0.390625vw);
 }
 textarea{
     padding: 10px;
+    width: 90%;
 }
 fieldset{
     background-color: white;
-    width: 700px;
     padding: 20px;
 }
 legend{
@@ -131,12 +133,46 @@ h1{
     cursor: pointer; /* Change cursor to pointer to indicate it's clickable */
     outline: none; /* Remove outline on focus */
 }
+.wrapper .sidebar ul#list {
+    flex-grow: 1;
+    overflow: auto;
+    max-height: 90%;
+    padding-bottom: 0;
+    scrollbar-width: thin;
+    scrollbar-color: #888 #f1f1f1;
+    direction: rtl; /* Scrollbar on left */
+}
 
+.wrapper .sidebar ul#list li {
+    direction: ltr;
+    padding: 15px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.wrapper .sidebar ul#list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.wrapper .sidebar ul#list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.wrapper .sidebar ul#list::-webkit-scrollbar-thumb {
+    background-color: #888;
+    border-radius: 10px;
+    border: 2px solid #f1f1f1;
+}
+
+.wrapper .sidebar ul#list::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+}
 .material-symbols-outlined {
     font-size: 10dvh;
     color: #3fffb9;
     background-color: black;
 }
+
 span.small{
     font-size: 30px;
 }
@@ -194,12 +230,7 @@ li button{
     flex-direction: column;
     justify-content: space-between;
 }
-.wrapper .sidebar ul#list {
-    flex-grow: 1;
-    overflow-y: auto;
-    max-height: 90%;
-    padding-bottom: 0px;
-}
+
 .wrapper .sidebar h2{
     color: #fff;
     text-align: center;
@@ -306,9 +337,20 @@ h2{
     border-bottom: 1px solid rgba(0,0,0,0.05);
     border-top: 1px solid rgba(255,255,255,0.05);
 }
-#create:hover{
+#extend{
+    position: static;
+    margin-top: auto; 
+    display: flex;
+    font-size: 20px;
+    padding: 15px;
+    border-bottom: 1px solid #bdb8d7;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    border-top: 1px solid rgba(255,255,255,0.05);
+}
+#create:hover,#extend:hover{
     background-color: #594f8d;
 }
 ul#list{
-    overflow-y: scroll;
+    overflow: auto;
+    overflow-x: auto;
 }
