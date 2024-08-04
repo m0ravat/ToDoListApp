@@ -340,7 +340,7 @@ button{
     margin-bottom: 20px;
 }
 h2{
-    font-size: calc(16px + 0.390625vw);
+    font-size: calc(14px + 0.390625vw);
 }
 .wrapper .sidebar .social_media a{
     display: block;
