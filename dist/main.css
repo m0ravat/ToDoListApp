@@ -49,7 +49,7 @@ header{
     display: grid;
     margin-top: 20px;
     row-gap: 15px;
-    column-gap: 10px;
+    column-gap: 5px;
     grid-template: max-content/max-content max-content max-content;
 }
 @media screen and (min-width:1400px){
