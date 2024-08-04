@@ -89,6 +89,7 @@ h1{
 .projectBox {
     width: 300px;
     height: 250px;
+    margin-right: 5px;
     border: 2px solid #008a57;
     background-color: rgb(255, 255, 255);
     position: relative; /* Add this to contain the inner element */
