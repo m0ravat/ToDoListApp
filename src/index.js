@@ -51,6 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.getElementById("list").addEventListener('click', (event) => {
+        document.getElementById("sode").style.width="140px";
         const target = event.target.closest('.projects');
         if (target) {
             const index = parseInt(target.getAttribute('data-index'), 10);
@@ -131,6 +132,7 @@ function loadProjectsFromLocalStorage() {
 }
 
 function loadHomePage() {
+    document.getElementById("sode").style.width="140px";
     document.getElementById("content").innerHTML = `
         <header>
             Welcome to MyNotesToDo!
@@ -189,7 +191,7 @@ document.getElementById("extend").addEventListener('click',function(){
         document.getElementById("sode").style.width="100%";
     }
     else{
-        document.getElementById("sode").style.width="10%";
+        document.getElementById("sode").style.width="140px";
     }
     count++;
 });
