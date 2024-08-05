@@ -21,11 +21,17 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/, // Apply this rule to all JS files
-        exclude: /node_modules/, // Do not apply to node_modules
+        test: /\.(?:js|mjs|cjs)$/,
+        exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
-        },
+          options: {
+            presets: [
+              ['@babel/preset-env', { targets: "defaults" }]
+            ],
+            plugins: ['@babel/plugin-proposal-class-properties']
+          }
+        }
       },
       {
         test: /\.css$/i,
